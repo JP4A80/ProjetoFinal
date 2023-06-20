@@ -1,0 +1,5 @@
+Nome, CPF, Salario, Area
+Joao, 00000000, 10, matematica
+Jo, 00000001, 10.1, ma
+Joa, 00000002, 10.2, mat
+Joao, 00000003, 10.3, matem
