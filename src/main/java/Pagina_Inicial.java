@@ -31,20 +31,26 @@ public class Pagina_Inicial extends javax.swing.JFrame {
         btnProfessor = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setPreferredSize(new java.awt.Dimension(600, 500));
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        jLabel1.setText("Pagina Principal");
+        jLabel1.setText("Atribuições de Professores");
 
         btnAtribuicoes.setText("Atribuições");
+        btnAtribuicoes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAtribuicoesActionPerformed(evt);
+            }
+        });
 
-        btnDisciplina.setText("Disciplina");
+        btnDisciplina.setText("Professores");
         btnDisciplina.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnDisciplinaActionPerformed(evt);
             }
         });
 
-        btnProfessor.setText("Professores");
+        btnProfessor.setText("Disciplinas");
         btnProfessor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnProfessorActionPerformed(evt);
@@ -56,33 +62,35 @@ public class Pagina_Inicial extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(87, 87, 87)
+                .addGap(77, 77, 77)
                 .addComponent(btnDisciplina, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 188, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnProfessor, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(93, 93, 93))
+                .addGap(83, 83, 83))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(161, Short.MAX_VALUE)
+                .addComponent(jLabel1)
+                .addGap(158, 158, 158))
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(216, 216, 216)
-                        .addComponent(jLabel1))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(241, 241, 241)
-                        .addComponent(btnAtribuicoes, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(242, 242, 242)
+                .addComponent(btnAtribuicoes, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(25, 25, 25)
-                .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 86, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnDisciplina, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnProfessor, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(58, 58, 58)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(45, 45, 45)
+                        .addComponent(jLabel1))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(179, 179, 179)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(btnProfessor, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnDisciplina, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 81, Short.MAX_VALUE)
                 .addComponent(btnAtribuicoes, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(96, 96, 96))
+                .addGap(144, 144, 144))
         );
 
         pack();
@@ -90,13 +98,24 @@ public class Pagina_Inicial extends javax.swing.JFrame {
 
     private void btnProfessorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProfessorActionPerformed
         // TODO add your handling code here:
+        Disciplinas altprd = new Disciplinas();
+        this.dispose();
+        altprd.setVisible(true);
     }//GEN-LAST:event_btnProfessorActionPerformed
 
     private void btnDisciplinaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDisciplinaActionPerformed
         // TODO add your handling code here:
+        Funcionarios altprd = new Funcionarios();
         this.dispose();
-        setVisible(true);
+        altprd.setVisible(true);
     }//GEN-LAST:event_btnDisciplinaActionPerformed
+
+    private void btnAtribuicoesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAtribuicoesActionPerformed
+        // TODO add your handling code here:
+        Atribuicoes altprd = new Atribuicoes();
+        this.dispose();
+        altprd.setVisible(true);
+    }//GEN-LAST:event_btnAtribuicoesActionPerformed
 
     /**
      * @param args the command line arguments

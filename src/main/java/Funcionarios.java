@@ -1,11 +1,4 @@
-
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.PrintWriter;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.UUID;
 import javax.swing.JOptionPane;
 
 /*
@@ -28,6 +21,7 @@ public class Funcionarios extends javax.swing.JFrame {
         initComponents();
         tbFuncionarios.setModel(model);   
         this.model.ler();
+
     }
 
     /**
@@ -43,11 +37,9 @@ public class Funcionarios extends javax.swing.JFrame {
         jTable1 = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         txtNome = new javax.swing.JTextField();
-        txtCpf = new javax.swing.JTextField();
         txtSalario = new javax.swing.JTextField();
         txtArea = new javax.swing.JTextField();
         btnCadastrar = new javax.swing.JButton();
@@ -56,6 +48,7 @@ public class Funcionarios extends javax.swing.JFrame {
         jScrollPane2 = new javax.swing.JScrollPane();
         tbFuncionarios = new javax.swing.JTable();
         btnGravar = new javax.swing.JButton();
+        btnVoltar = new javax.swing.JButton();
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -77,13 +70,12 @@ public class Funcionarios extends javax.swing.JFrame {
             }
         });
 
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jLabel1.setText("Professor");
 
         jLabel2.setText("Nome");
 
-        jLabel3.setText("CPF");
-
-        jLabel4.setText("Salario");
+        jLabel4.setText("Especialidade");
 
         jLabel5.setText("Area");
 
@@ -139,6 +131,13 @@ public class Funcionarios extends javax.swing.JFrame {
             }
         });
 
+        btnVoltar.setText("Voltar");
+        btnVoltar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnVoltarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -146,67 +145,63 @@ public class Funcionarios extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel1)
-                .addGap(220, 220, 220))
+                .addGap(242, 242, 242))
             .addGroup(layout.createSequentialGroup()
-                .addGap(30, 30, 30)
+                .addGap(62, 62, 62)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 452, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel4)
-                            .addComponent(jLabel5))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(txtNome)
-                            .addComponent(txtCpf)
-                            .addComponent(txtSalario)
-                            .addComponent(txtArea, javax.swing.GroupLayout.DEFAULT_SIZE, 125, Short.MAX_VALUE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 186, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(btnCadastrar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btnAlterar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btnRemover, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btnGravar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(25, 25, 25))))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 464, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(layout.createSequentialGroup()
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabel4)
+                                .addComponent(jLabel5)
+                                .addComponent(jLabel2))
+                            .addGap(18, 18, 18)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(txtSalario, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(txtArea, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGap(135, 135, 135)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(btnCadastrar)
+                                .addComponent(btnAlterar, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(btnRemover, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(btnGravar, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addComponent(btnVoltar))
+                .addContainerGap(74, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel1)
-                .addGap(25, 25, 25)
+                .addGap(31, 31, 31)
+                .addComponent(btnVoltar)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel2)
                             .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel3)
-                            .addComponent(txtCpf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel4)
-                            .addComponent(txtSalario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(15, 15, 15)
+                        .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel5)
-                            .addComponent(txtArea, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(38, 38, 38)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(txtSalario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(21, 21, 21)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel4)
+                            .addComponent(txtArea, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(btnCadastrar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(btnAlterar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(btnRemover)
-                        .addGap(18, 18, 18)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(btnGravar)))
-                .addContainerGap(29, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 60, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(28, 28, 28))
         );
 
         pack();
@@ -220,7 +215,7 @@ public class Funcionarios extends javax.swing.JFrame {
         // TODO add your handling code here:
         Funcionario f = gerarFuncionario();
         
-        if(validarCampos(f.getNome(), f.getCpf(), f.getSalario(), f.getArea())){
+        if(validarCampos(f.getNome(), f.getArea(),f.getSalario())){
             this.model.cadastrarFuncionario(f);
             limparCampos();
         } 
@@ -231,7 +226,6 @@ public class Funcionarios extends javax.swing.JFrame {
         int index = tbFuncionarios.getSelectedRow();
         Funcionario f = this.model.returnFuncionario(index);
         txtNome.setText(f.getNome());
-        txtCpf.setText(f.getCpf());
         txtSalario.setText(String.valueOf(f.getSalario()));
         txtArea.setText(f.getArea());
     }//GEN-LAST:event_tbFuncionariosMouseClicked
@@ -240,7 +234,7 @@ public class Funcionarios extends javax.swing.JFrame {
         // TODO add your handling code here:
         Funcionario f = gerarFuncionario();
         int index = tbFuncionarios.getSelectedRow();
-        if(validarCampos(f.getNome(), f.getCpf(), f.getSalario(), f.getArea())){
+        if(validarCampos(f.getNome(), f.getArea(), f.getSalario())){
             this.model.alterarFuncionario(index,f);
             limparCampos();
         }
@@ -286,30 +280,45 @@ public class Funcionarios extends javax.swing.JFrame {
         // TODO add your handling code here: 
     }//GEN-LAST:event_formMouseClicked
 
+    private void btnVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVoltarActionPerformed
+        // TODO add your handling code here:
+        Pagina_Inicial altprd = new Pagina_Inicial();
+        this.dispose();
+        altprd.setVisible(true);
+    }//GEN-LAST:event_btnVoltarActionPerformed
+
     public Funcionario gerarFuncionario(){
         String nome = txtNome.getText();
-        String cpf = txtCpf.getText();
-        double salario = Double.parseDouble(txtSalario.getText());
+        String cpf = geradorId();
+        String salario = txtSalario.getText();
         String area = txtArea.getText();
-        
-        Funcionario f = new Funcionario(nome, cpf,salario, area);
+        Funcionario f = new Funcionario(nome,salario, area,cpf);
         return f;
     }
     
     public void limparCampos(){
         txtNome.setText("");
-        txtCpf.setText("");
         txtSalario.setText("");
         txtArea.setText("");
     }
+    
+    public String geradorId(){
+        UUID uuid = UUID.randomUUID();
+        String stringAutomatica = uuid.toString();  
+        //this.stringAutomatica = stringAutomatica; 
+        return stringAutomatica;
+    }
         
-    public boolean validarCampos(String nome, String cpf, double salario, String area){
-        if(nome.trim().isEmpty() || cpf.trim().isEmpty() || area.trim().isEmpty() || Double.valueOf(salario).isNaN()){
+    public boolean validarCampos(String nome, String area, String salario){
+        if(nome.trim().isEmpty() || /*cpf.trim().isEmpty() ||*/ area.trim().isEmpty() || salario.trim().isEmpty()){
             JOptionPane.showMessageDialog(this, "Campos nao preenchidos");
             return false;
         }
         return true;
     }
+    
+    
+
     
     /**
      * @param args the command line arguments
@@ -351,9 +360,9 @@ public class Funcionarios extends javax.swing.JFrame {
     private javax.swing.JButton btnCadastrar;
     private javax.swing.JButton btnGravar;
     private javax.swing.JButton btnRemover;
+    private javax.swing.JButton btnVoltar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JScrollPane jScrollPane1;
@@ -361,7 +370,6 @@ public class Funcionarios extends javax.swing.JFrame {
     private javax.swing.JTable jTable1;
     private javax.swing.JTable tbFuncionarios;
     private javax.swing.JTextField txtArea;
-    private javax.swing.JTextField txtCpf;
     private javax.swing.JTextField txtNome;
     private javax.swing.JTextField txtSalario;
     // End of variables declaration//GEN-END:variables

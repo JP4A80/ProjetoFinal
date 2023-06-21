@@ -9,20 +9,18 @@
  */
 public class Funcionario {
     private String nome;
-    private String cpf;
-    private double salario;
+    private String salario;
     private String area;
+    private String cpf;
 
     
-    public Funcionario(String nome, String cpf, double salario, String area){
+    public Funcionario(String nome,String salario, String area,String cpf){
         super();
         this.nome = nome;
-        this.cpf = cpf;
         this.salario = salario;
         this.area = area;
+        this.cpf = cpf;
     }
-            
-    
     
     public String getNome() {
         return nome;
@@ -44,11 +42,11 @@ public class Funcionario {
 
     
     
-    public double getSalario() {
+    public String getSalario() {
         return salario;
     }
 
-    public void setSalario(double salario) {
+    public void setSalario(String salario) {
         this.salario = salario;
     }
 

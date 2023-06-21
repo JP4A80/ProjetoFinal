@@ -19,7 +19,7 @@ import javax.swing.table.AbstractTableModel;
 public class ModelFuncionarios extends AbstractTableModel{
 
     ArrayList<Funcionario> funcionarios = new ArrayList();
-    String[] colunas = {"Nome", "CPF", "Salario", "area"};
+    String[] colunas = {"Nome", "Area", "Especialidade", "ID"};
     
     public void cadastrarFuncionario(Funcionario f){
         funcionarios.add(f);
@@ -52,10 +52,10 @@ public class ModelFuncionarios extends AbstractTableModel{
 				
 				String[] vect = line.split(",");
 				String nome = vect[0];
-                                String cpf = vect[1];
-				Double salario = Double.valueOf(vect[2]);
-				String area = vect[3];
-                                Funcionario f = new Funcionario( nome, cpf,  salario,  area);
+                                String salario = vect[1];
+                                String area = vect[2];
+				String cpf = vect[3];
+                                Funcionario f = new Funcionario( nome, salario, area,cpf);
                                cadastrarFuncionario(f);
 				line = br.readLine();
 			}	
@@ -76,7 +76,7 @@ public class ModelFuncionarios extends AbstractTableModel{
             FileWriter arq = new FileWriter("C:\\Users\\jpexi\\OneDrive\\Documentos\\NetBeansProjects\\ProjetoFinal\\in.txt");
             PrintWriter gravarArq = new PrintWriter(arq);
             System.out.print("Entrou\n");
-            gravarArq.print("Nome, CPF, Salario, Area\n");
+            gravarArq.print("Nome,Salario, Area, ID\n");
             for (int i=0; i < somaLinhas; i++){
                 Funcionario f = returnFuncionario(i);
                 /*
@@ -85,7 +85,7 @@ public class ModelFuncionarios extends AbstractTableModel{
                 gravarArq.print(f.getSalario());
                 gravarArq.print(f.getArea());
                 gravarArq.printf("\n");*/
-                String conteudo = f.getNome()+ ","+f.getCpf()+","+f.getSalario()+","+f.getArea()+"\n";
+                String conteudo = f.getNome()+ ","+f.getSalario()+","+f.getArea()+","+f.getCpf()+"\n";
                 System.out.print(conteudo);
                 gravarArq.print(conteudo);
                 
@@ -116,11 +116,11 @@ public class ModelFuncionarios extends AbstractTableModel{
         if(columnIndex == 0){
            return funcionarios.get(rowIndex).getNome();
         }else if (columnIndex == 1){
-            return funcionarios.get(rowIndex).getCpf();
-        }else if (columnIndex == 2){
             return funcionarios.get(rowIndex).getSalario();
-        } else {
+        }else if (columnIndex == 2){
             return funcionarios.get(rowIndex).getArea();
+        } else {
+            return funcionarios.get(rowIndex).getCpf();
         }
     }
     

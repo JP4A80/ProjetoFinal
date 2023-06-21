@@ -19,7 +19,7 @@ import javax.swing.table.AbstractTableModel;
 public class ModelDisciplinas extends AbstractTableModel{
 
     ArrayList<Disciplina> disciplinas = new ArrayList();
-    String[] colunas = {"Nome", "Area", "Horas", "id"};
+    String[] colunas = {"Nome", "Area", "Horas", "ID"};
     
     public void cadastrarDisciplina(Disciplina h){
         disciplinas.add(h);
