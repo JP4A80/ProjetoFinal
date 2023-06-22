@@ -114,6 +114,8 @@ public class ModelFuncionarios extends AbstractTableModel{
         return colunas[column];
     }
 
+    
+    
     @Override
     public Object getValueAt(int rowIndex, int columnIndex) {
         if(columnIndex == 0){

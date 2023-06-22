@@ -1,4 +1,9 @@
-package Projeto;
+package Projeto; 
+        
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.ArrayList;
 
 
 
@@ -12,6 +17,7 @@ package Projeto;
  * @author jpexi
  */
 public class Atribuicoes extends javax.swing.JFrame {
+    ModelAtribuicao model = new ModelAtribuicao();
     
     /**
      * Creates new form Atribuicao
@@ -19,6 +25,99 @@ public class Atribuicoes extends javax.swing.JFrame {
     public Atribuicoes() {
         initComponents();
         this.boxPro.removeAllItems();
+        this.boxDis.removeAllItems();
+        tbAtribuicao.setModel(model);   
+        /*
+        *
+        *
+        *
+        *
+        */
+        ArrayList<Funcionario> funcionarios = new ArrayList();
+        String path = "C:\\Users\\jpexi\\OneDrive\\Documentos\\NetBeansProjects\\ProjetoFinal\\in.txt";
+        try (BufferedReader br = new BufferedReader(new FileReader(path))) {
+			
+			String line = br.readLine();
+			line = br.readLine();
+			while (line != null) {
+				
+				String[] vect = line.split(",");
+				String nome = vect[0];
+                                String salario = vect[1];
+                                String area = vect[2];
+				String cpf = vect[3];
+                                Funcionario f = new Funcionario( nome, salario, area,cpf);
+                               funcionarios.add(f);
+                               String conteudo = f.getNome()+" ("+f.getArea()+", "+f.getCpf()+")";
+				this.boxPro.addItem(conteudo);
+                               line = br.readLine();
+                               System.out.println("entrou");
+			}	
+			
+			System.out.println("PRODUCTS:");
+			for (Funcionario p : funcionarios) {
+				System.out.println(p);
+                                //this.boxPro.addItemListener(conteudo);
+			}
+		}
+		catch (IOException e) {
+			System.out.println("Error: " + e.getMessage());
+		}
+        /*
+        *
+        *
+        *
+        *
+        *
+        *
+        *
+        */
+        ArrayList<Disciplina> disciplinas = new ArrayList();
+        String caminho = "C:\\Users\\jpexi\\OneDrive\\Documentos\\NetBeansProjects\\ProjetoFinal\\Disciplinas.txt";
+        try (BufferedReader br = new BufferedReader(new FileReader(caminho))) {
+			
+			String line = br.readLine();
+			line = br.readLine();
+			while (line != null) {
+				
+                            
+                            
+                                String[] vect = line.split(",");
+				String nome = vect[0];
+                                String area = vect[1];
+				Double horas = Double.valueOf(vect[2]);
+				String id = vect[3];
+                                Disciplina h = new Disciplina( nome, area,  horas,  id);
+                                disciplinas.add(h);
+                               String conteudo = h.getNome()+" ("+h.getArea()+", "+h.getId()+")";
+				this.boxDis.addItem(conteudo);
+                                line = br.readLine();
+                                System.out.println("entrou");
+                                
+				/*String[] vect = line.split(",");
+				String nome = vect[0];
+                                String salario = vect[1];
+                                String area = vect[2];
+				String cpf = vect[3];
+                                Funcionario f = new Funcionario( nome, salario, area,cpf);
+                               funcionarios.add(f);
+                               String conteudo = f.getNome()+" ("+f.getArea()+", "+f.getCpf()+")";
+				this.boxPro.addItem(conteudo);
+                               line = br.readLine();
+                               System.out.println("entrou");*/
+			}	
+			
+			System.out.println("PRODUCTS:");
+			for (Disciplina p : disciplinas) {
+				System.out.println(p);
+                                //this.boxPro.addItemListener(conteudo);
+			}
+		}
+		catch (IOException e) {
+			System.out.println("Error: " + e.getMessage());
+		}
+        
+        
     }
 
     /**
@@ -33,8 +132,11 @@ public class Atribuicoes extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tbAtribuicao = new javax.swing.JTable();
         boxPro = new javax.swing.JComboBox<>();
+        boxDis = new javax.swing.JComboBox<>();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -48,7 +150,7 @@ public class Atribuicoes extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jLabel1.setText("Atribuições");
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tbAtribuicao.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -59,45 +161,79 @@ public class Atribuicoes extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jTable1.setPreferredSize(new java.awt.Dimension(400, 80));
-        jScrollPane1.setViewportView(jTable1);
+        tbAtribuicao.setPreferredSize(new java.awt.Dimension(400, 80));
+        jScrollPane1.setViewportView(tbAtribuicao);
 
-        boxPro.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        boxPro.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                boxProMouseClicked(evt);
+            }
+        });
         boxPro.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 boxProActionPerformed(evt);
             }
         });
 
+        boxDis.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        boxDis.setPreferredSize(new java.awt.Dimension(250, 60));
+        boxDis.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                boxDisMouseClicked(evt);
+            }
+        });
+        boxDis.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                boxDisActionPerformed(evt);
+            }
+        });
+
+        jLabel2.setText("Professores");
+
+        jLabel3.setText("Disciplinas");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addGap(49, 49, 49)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(15, 15, 15)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(235, 235, 235)
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(143, 143, 143)
                         .addComponent(jLabel1))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(66, 66, 66)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 485, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(boxPro, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(194, Short.MAX_VALUE))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 515, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(boxPro, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jLabel2))
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabel3)
+                                .addComponent(boxDis, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addContainerGap(61, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(27, 27, 27)
-                .addComponent(jLabel1)
-                .addGap(18, 18, 18)
-                .addComponent(jButton1)
-                .addGap(30, 30, 30)
-                .addComponent(boxPro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 107, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(60, 60, 60)
+                        .addComponent(jButton1))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(29, 29, 29)
+                        .addComponent(jLabel1)))
+                .addGap(40, 40, 40)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(jLabel3))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(boxPro, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(boxDis, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 45, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 206, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(35, 35, 35))
         );
@@ -113,10 +249,58 @@ public class Atribuicoes extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void boxProActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boxProActionPerformed
-       
-        
+   
     }//GEN-LAST:event_boxProActionPerformed
 
+    private void boxProMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_boxProMouseClicked
+        // TODO add your handling code here:
+        /*ArrayList<Funcionario> funcionarios = new ArrayList();
+        String path = "C:\\Users\\jpexi\\OneDrive\\Documentos\\NetBeansProjects\\ProjetoFinal\\in.txt";
+        try (BufferedReader br = new BufferedReader(new FileReader(path))) {
+			
+			String line = br.readLine();
+			line = br.readLine();
+			while (line != null) {
+				
+				String[] vect = line.split(",");
+				String nome = vect[0];
+                                String salario = vect[1];
+                                String area = vect[2];
+				String cpf = vect[3];
+                                Funcionario f = new Funcionario( nome, salario, area,cpf);
+                               funcionarios.add(f);
+                               String conteudo = f.getNome()+" ("+f.getArea()+", "+f.getCpf()+")";
+				this.boxPro.addItem(conteudo);
+                               line = br.readLine();
+                               System.out.println("entrou");
+			}	
+			
+			System.out.println("PRODUCTS:");
+			for (Funcionario p : funcionarios) {
+				System.out.println(p);
+                                //this.boxPro.addItemListener(conteudo);
+			}
+		}
+		catch (IOException e) {
+			System.out.println("Error: " + e.getMessage());
+		}*/
+        
+        
+    }//GEN-LAST:event_boxProMouseClicked
+
+    private void boxDisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boxDisActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_boxDisActionPerformed
+
+    private void boxDisMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_boxDisMouseClicked
+        // TODO add your handling code here:
+        
+        
+    }//GEN-LAST:event_boxDisMouseClicked
+    
+    
+    
+    
     /**
      * @param args the command line arguments
      */
@@ -154,10 +338,13 @@ public class Atribuicoes extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JComboBox<String> boxDis;
     private javax.swing.JComboBox<String> boxPro;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable tbAtribuicao;
     // End of variables declaration//GEN-END:variables
 }

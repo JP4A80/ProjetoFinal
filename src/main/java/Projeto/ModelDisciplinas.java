@@ -22,7 +22,7 @@ import javax.swing.table.AbstractTableModel;
 public class ModelDisciplinas extends AbstractTableModel{
 
     ArrayList<Disciplina> disciplinas = new ArrayList();
-    String[] colunas = {"Nome", "Area", "Horas", "ID"};
+    String[] colunas = {"Nome", "Area", "Especialiazação", "ID"};
     
     public void cadastrarDisciplina(Disciplina h){
         disciplinas.add(h);
@@ -80,7 +80,7 @@ public class ModelDisciplinas extends AbstractTableModel{
             FileWriter arq = new FileWriter("C:\\Users\\jpexi\\OneDrive\\Documentos\\NetBeansProjects\\ProjetoFinal\\Disciplinas.txt");
             PrintWriter gravarArq = new PrintWriter(arq);
             System.out.print("Entrou\n");
-            gravarArq.print("Nome, CPF, Salario, Area\n");
+            gravarArq.print("Nome, Area, Carga horaria, ID\n");
             for (int i=0; i < somaLinhas; i++){
                 Disciplina f = returnDisciplina(i);
                 /*

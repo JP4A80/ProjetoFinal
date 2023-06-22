@@ -67,8 +67,12 @@ public class Funcionario {
 
     @Override
 	public String toString() {
-		return "Product [Nome = " + nome + ", CPF = " + cpf + ", Salario = " + salario + " Area = "+ area +"]";
+		return "Nome = " + nome + ", Salario = " + cpf + ", Area = " + salario + " ID = "+ area +"]";
 	}
+
+    Object getHoras() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
     
     
     
