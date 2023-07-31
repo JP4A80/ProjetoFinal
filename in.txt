@@ -1,6 +1,6 @@
 Nome,Salario, Area, ID
-Ana, 1234,matematica,6e29da9f-20bd-4ebf-a9da-f93c5720fa6e
-luis,1223123,ingles,e9652321-08b7-4b54-bf6c-3f2f33e03dc6
-joao,34234.0,biologia,99665048-ae31-4e08-97c5-7a9e8cc11fed
-pedro,12312.0,portugues,7d7e38d4-182a-4183-9ea4-886865154aa7
-valaria,123432,fisica,a6a88bad-754d-488c-bf44-79b5137f1e9f
+Ana,Exatas,matematica,ee6e55ae-9087-4bcf-a1d6-9801c4d4ef26
+pedro,Humanas,portugues,5b8c98e0-0f8c-4c89-a352-caadc0282651
+valeria,Exatas,biologia,4b077108-c796-4602-9512-d111ef8a4349
+Lucas,matematica,Matematica aplicada,e8cfca5e-6a6f-4bb1-874a-273b624da52f
+lucas,Exatas,matematica,7d4c4396-5a11-496b-a8f4-9ea87fc19cd9

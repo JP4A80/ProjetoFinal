@@ -3,3 +3,6 @@ Matematica,Exatas,40.0,aee6bc23-4b49-48d8-b4eb-555a7ad6d26c
 Ingles,Humanas,20.0,8e61b64e-a4f5-4dec-8a6c-e969dc5bd5c2
 Portugues,Humanas,40.0,68f7707c-84bb-420e-b072-541129fe0d46
 Ciencia,Exata,30.0,0360716a-36a4-4a08-aad9-e63b12178f8d
+Redação ,Humanas,40.0,ad5dcf33-0ede-42d9-8621-23158d120a16
+Portugues 2 ,Humanas,90.0,70e6a25f-3e60-4d45-b958-448af183a5eb
+Portugues 3,Humanas,80.0,26867adc-be8f-43f1-9105-86a5ffb8a6d5

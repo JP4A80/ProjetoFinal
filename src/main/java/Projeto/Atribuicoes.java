@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 
 
 
@@ -27,6 +28,7 @@ public class Atribuicoes extends javax.swing.JFrame {
         this.boxPro.removeAllItems();
         this.boxDis.removeAllItems();
         tbAtribuicao.setModel(model);   
+        this.model.ler();
         /*
         *
         *
@@ -48,7 +50,7 @@ public class Atribuicoes extends javax.swing.JFrame {
 				String cpf = vect[3];
                                 Funcionario f = new Funcionario( nome, salario, area,cpf);
                                funcionarios.add(f);
-                               String conteudo = f.getNome()+" ("+f.getArea()+", "+f.getCpf()+")";
+                               String conteudo = f.getNome()+" ,"+f.getArea()+", "+f.getCpf()+",";
 				this.boxPro.addItem(conteudo);
                                line = br.readLine();
                                System.out.println("entrou");
@@ -89,7 +91,7 @@ public class Atribuicoes extends javax.swing.JFrame {
 				String id = vect[3];
                                 Disciplina h = new Disciplina( nome, area,  horas,  id);
                                 disciplinas.add(h);
-                               String conteudo = h.getNome()+" ("+h.getArea()+", "+h.getId()+")";
+                               String conteudo = h.getNome()+" ,"+h.getArea()+", "+h.getId()+",";
 				this.boxDis.addItem(conteudo);
                                 line = br.readLine();
                                 System.out.println("entrou");
@@ -137,6 +139,9 @@ public class Atribuicoes extends javax.swing.JFrame {
         boxDis = new javax.swing.JComboBox<>();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
+        jButton2 = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
+        jButton4 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -164,11 +169,6 @@ public class Atribuicoes extends javax.swing.JFrame {
         tbAtribuicao.setPreferredSize(new java.awt.Dimension(400, 80));
         jScrollPane1.setViewportView(tbAtribuicao);
 
-        boxPro.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                boxProMouseClicked(evt);
-            }
-        });
         boxPro.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 boxProActionPerformed(evt);
@@ -192,28 +192,56 @@ public class Atribuicoes extends javax.swing.JFrame {
 
         jLabel3.setText("Disciplinas");
 
+        jButton2.setText("Atribuir");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
+        jButton3.setText("Excluir");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+
+        jButton4.setText("Gravar");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(49, 49, 49)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(143, 143, 143)
-                        .addComponent(jLabel1))
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 515, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(boxPro, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jLabel2))
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jLabel3)
-                                .addComponent(boxDis, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addContainerGap(61, Short.MAX_VALUE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(143, 143, 143)
+                                .addComponent(jLabel1))
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 515, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addContainerGap(61, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel2)
+                            .addComponent(boxPro, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel3)
+                            .addComponent(boxDis, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(43, 43, 43)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jButton2)
+                            .addComponent(jButton3)
+                            .addComponent(jButton4))
+                        .addGap(15, 15, 15))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -226,16 +254,25 @@ public class Atribuicoes extends javax.swing.JFrame {
                         .addGap(29, 29, 29)
                         .addComponent(jLabel1)))
                 .addGap(40, 40, 40)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel3))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(boxPro, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(boxDis, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 45, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 206, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(35, 35, 35))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel3))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(boxPro, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(boxDis, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 55, Short.MAX_VALUE)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 206, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(35, 35, 35))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jButton2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButton3)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButton4)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
 
         pack();
@@ -252,42 +289,6 @@ public class Atribuicoes extends javax.swing.JFrame {
    
     }//GEN-LAST:event_boxProActionPerformed
 
-    private void boxProMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_boxProMouseClicked
-        // TODO add your handling code here:
-        /*ArrayList<Funcionario> funcionarios = new ArrayList();
-        String path = "C:\\Users\\jpexi\\OneDrive\\Documentos\\NetBeansProjects\\ProjetoFinal\\in.txt";
-        try (BufferedReader br = new BufferedReader(new FileReader(path))) {
-			
-			String line = br.readLine();
-			line = br.readLine();
-			while (line != null) {
-				
-				String[] vect = line.split(",");
-				String nome = vect[0];
-                                String salario = vect[1];
-                                String area = vect[2];
-				String cpf = vect[3];
-                                Funcionario f = new Funcionario( nome, salario, area,cpf);
-                               funcionarios.add(f);
-                               String conteudo = f.getNome()+" ("+f.getArea()+", "+f.getCpf()+")";
-				this.boxPro.addItem(conteudo);
-                               line = br.readLine();
-                               System.out.println("entrou");
-			}	
-			
-			System.out.println("PRODUCTS:");
-			for (Funcionario p : funcionarios) {
-				System.out.println(p);
-                                //this.boxPro.addItemListener(conteudo);
-			}
-		}
-		catch (IOException e) {
-			System.out.println("Error: " + e.getMessage());
-		}*/
-        
-        
-    }//GEN-LAST:event_boxProMouseClicked
-
     private void boxDisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boxDisActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_boxDisActionPerformed
@@ -297,6 +298,44 @@ public class Atribuicoes extends javax.swing.JFrame {
         
         
     }//GEN-LAST:event_boxDisMouseClicked
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+
+         Atribuicao h = gerarAtribuicao();
+         this.model.cadastrarDisciplina(h);
+        
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // TODO add your handling code here:
+        int index = tbAtribuicao.getSelectedRow();
+        this.model.removerAtribuicao(index);
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        // TODO add your handling code here:
+        int somaLinhas = tbAtribuicao.getRowCount();
+        this.model.gravard(somaLinhas);
+    }//GEN-LAST:event_jButton4ActionPerformed
+    
+    
+    public Atribuicao gerarAtribuicao(){
+        String itemPro = (String) boxPro.getSelectedItem();
+        //String line =
+        String[] vect = itemPro.split(",");
+        String nome = vect[0];
+        String aux = vect[1];
+        String area = vect[2];
+        
+        
+        String itemDis = (String) boxDis.getSelectedItem();
+        String[] vect2 = itemDis.split(",");
+        String horas = vect2[0];
+        String aux2 = vect2[1];
+        String id = vect2[2];
+        Atribuicao h = new Atribuicao(nome, area,horas, id);
+        return h;
+    }
     
     
     
@@ -341,6 +380,9 @@ public class Atribuicoes extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> boxDis;
     private javax.swing.JComboBox<String> boxPro;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

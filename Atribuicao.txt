@@ -1,0 +1,5 @@
+Disciplina, ID Disciplina, Professor,ID Professor
+joao , 99665048-ae31-4e08-97c5-7a9e8cc11fed,Ingles , 8e61b64e-a4f5-4dec-8a6c-e969dc5bd5c2
+valaria , a6a88bad-754d-488c-bf44-79b5137f1e9f,Ciencia , 0360716a-36a4-4a08-aad9-e63b12178f8d
+valaria , a6a88bad-754d-488c-bf44-79b5137f1e9f,Ingles , 8e61b64e-a4f5-4dec-8a6c-e969dc5bd5c2
+pedro , 7d7e38d4-182a-4183-9ea4-886865154aa7,Ciencia , 0360716a-36a4-4a08-aad9-e63b12178f8d

@@ -82,12 +82,6 @@ public class ModelFuncionarios extends AbstractTableModel{
             gravarArq.print("Nome,Salario, Area, ID\n");
             for (int i=0; i < somaLinhas; i++){
                 Funcionario f = returnFuncionario(i);
-                /*
-                gravarArq.print(f.getNome());
-                gravarArq.print(f.getCpf());
-                gravarArq.print(f.getSalario());
-                gravarArq.print(f.getArea());
-                gravarArq.printf("\n");*/
                 String conteudo = f.getNome()+ ","+f.getSalario()+","+f.getArea()+","+f.getCpf()+"\n";
                 System.out.print(conteudo);
                 gravarArq.print(conteudo);

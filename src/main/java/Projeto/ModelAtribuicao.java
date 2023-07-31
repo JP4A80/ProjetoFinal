@@ -6,7 +6,9 @@ package Projeto;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.table.AbstractTableModel;
@@ -17,18 +19,18 @@ import javax.swing.table.AbstractTableModel;
  */
 public class ModelAtribuicao extends AbstractTableModel{
     
-    ArrayList<Funcionario> funcionarios = new ArrayList();
+    ArrayList<Atribuicao> atribuicao = new ArrayList();
     String[] colunas = {"Disciplina", "ID Disciplina","Professor", "ID Professor"};
     
     
-   public void cadastrarFuncionario(Funcionario f){
-        funcionarios.add(f);
+   public void cadastrarDisciplina(Atribuicao f){
+        atribuicao.add(f);
         this.fireTableDataChanged();
     }
     
    public void ler(){
     String path = "C:\\Users\\jpexi\\OneDrive\\Documentos\\NetBeansProjects\\ProjetoFinal\\Atribuicao.txt";
-		List<Funcionario> list = new ArrayList<Funcionario>();
+		List<Atribuicao> list = new ArrayList<Atribuicao>();
 		
 		try (BufferedReader br = new BufferedReader(new FileReader(path))) {
 			
@@ -41,14 +43,14 @@ public class ModelAtribuicao extends AbstractTableModel{
                                 String salario = vect[1];
                                 String area = vect[2];
 				String cpf = vect[3];
-                                Funcionario f = new Funcionario( nome, salario, area,cpf);
-                               cadastrarFuncionario(f);
+                                Atribuicao e = new Atribuicao( nome, salario, area,cpf);
+                               cadastrarDisciplina(e);
 				line = br.readLine();
 			}	
 			
 			System.out.println("PRODUCTS:");
-			for (Funcionario p : list) {
-				System.out.println(p);
+			for (Atribuicao e : list) {
+				System.out.println(e);
 			}
 		}
 		catch (IOException e) {
@@ -57,9 +59,39 @@ public class ModelAtribuicao extends AbstractTableModel{
     }
    
    
+   public void gravard(int somaLinhas){
+         
+        try{
+            FileWriter arq = new FileWriter("C:\\Users\\jpexi\\OneDrive\\Documentos\\NetBeansProjects\\ProjetoFinal\\Atribuicao.txt");
+            PrintWriter gravarArq = new PrintWriter(arq);
+            System.out.print("Entrou\n");
+            gravarArq.print("Disciplina, ID Disciplina, Professor,ID Professor\n");
+            for (int i=0; i < somaLinhas; i++){
+                Atribuicao f = returnAtribuicao(i);
+                String conteudo = f.getDisiplina()+ ","+f.getIddisplina()+","+f.getProfessor()+","+f.getIdprofessor()+"\n";
+                System.out.print(conteudo);
+                gravarArq.print(conteudo);
+                
+            }
+            gravarArq.close();
+        }catch (java.io.IOException er){
+            System.out.println("OOOOps");
+        }
+    }
+   
+   
+   public Atribuicao returnAtribuicao(int index){
+        return atribuicao.get(index);
+    }
+   
+   public void removerAtribuicao(int index){
+        atribuicao.remove(index);
+        this.fireTableDataChanged();
+    }
+   
     @Override
     public int getRowCount() {
-        return funcionarios.size();
+        return atribuicao.size();
     }
 
     @Override
@@ -75,13 +107,13 @@ public class ModelAtribuicao extends AbstractTableModel{
     @Override
     public Object getValueAt(int rowIndex, int columnIndex) {
         if(columnIndex == 0){
-           return funcionarios.get(rowIndex).getNome();
+           return atribuicao.get(rowIndex).getDisiplina();
         }else if (columnIndex == 1){
-            return funcionarios.get(rowIndex).getSalario();
+            return atribuicao.get(rowIndex).getIddisplina();
         }else if (columnIndex == 2){
-            return funcionarios.get(rowIndex).getArea();
+            return atribuicao.get(rowIndex).getProfessor();
         } else {
-            return funcionarios.get(rowIndex).getCpf();
+            return atribuicao.get(rowIndex).getIdprofessor();
         }
     }
     
